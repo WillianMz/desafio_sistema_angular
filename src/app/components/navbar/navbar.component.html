@@ -1,0 +1,45 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+
+
+    <a class="navbar-brand text-uppercase fw-bold">
+      <img src="../../../assets/icone.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      {{titlePage}}
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar"
+            aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation" *ngIf="menus">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topNavBar" *ngIf="menus">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/users">Usuários</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <!-- <i class="bi bi-person-fill"></i> -->
+            <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
+            Willian
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/auth/account">Meu Perfil</a></li>
+            <li><a class="dropdown-item" routerLink="/auth">Sair</a></li>
+            <!-- <li>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </li> -->
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
