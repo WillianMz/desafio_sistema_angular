@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [titlePage]="'Desafio'"></app-navbar>
 
 
 <div class="container">
@@ -8,7 +8,7 @@
       <h3 class="mt-2">Usuários</h3>
 
       <div class="btn-group">
-        <button class="btn btn-sm btn-primary">Novo usuário</button>
+        <button class="btn btn-sm btn-primary" (click)="new()">Novo usuário</button>
       </div>
 
       <br>
@@ -23,23 +23,15 @@
                 <th>CPF</th>
                 <th>Endereço</th>
                 <th>Telefone</th>
-                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>#24554</td>
-                <td>FULANO DE TAL SICLANO DE TAL</td>
-                <td>000.000.000-00</td>
-                <td>Nova Veneza-SC</td>
-                <td>(48)00000-0000</td>
-                <td>
-                  <div class="btn-group">
-                    <button class="btn btn-sm btn-outline-primary">Editar</button>
-                    <button class="btn btn-sm btn-outline-primary">Excluír</button>
-                    <button class="btn btn-sm btn-outline-primary">Detalhes</button>
-                  </div>
-                </td>
+              <tr *ngFor="let u of users">
+                <td>#{{u.id}}</td>
+                <td>{{u.nome}}</td>
+                <td>{{u.cpf}}</td>
+                <td>{{u.cidade || "Indisponível"}} {{u.estado}}</td>
+                <td>{{u.telefone}}</td>
               </tr>
             </tbody>
           </table>

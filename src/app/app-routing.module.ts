@@ -8,7 +8,7 @@ const routes: Routes = [
   {path:'usuarios', loadChildren: () => import('./pages/usuario/usuario.module').then(m => m.UsuarioModule)},
   {path:'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)},
   {path:'404', component: NotFoundComponent},
-  {path:'', redirectTo:'usuarios', pathMatch:'full'},
+  {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'**', redirectTo:'404'},
   {path:'home', redirectTo:'usuarios'}
 ];
