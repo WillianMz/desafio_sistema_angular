@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ErroServidor } from 'src/app/models/erroServidor';
 import { NovoUsuarioModel } from 'src/app/models/novoUsuarioModel';
-import { UsuarioModel } from 'src/app/models/usuarioModel';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserFormComponent implements OnInit {
 
   newUser: NovoUsuarioModel;
-  user: UsuarioModel;
+  user: NovoUsuarioModel;
   userID: number;
   userForm: FormGroup;
   message: string;
@@ -30,11 +29,11 @@ export class UserFormComponent implements OnInit {
     private toastr: ToastrService
   ) {
     let user = {
-      Nome: '',
-      CPF: '',
-      Telefone: '',
-      Senha:'',
-      ConfirmarSenha:''
+      nome: '',
+      cpf: '',
+      telefone: '',
+      senha:'',
+      confirmarSenha:''
     }
 
     this.startForm(user);
@@ -94,6 +93,7 @@ export class UserFormComponent implements OnInit {
     if(id){
       this.userID = parseInt(id);
       this.load(this.userID);
+      console.log(this.userID)
     }
     else{
       this.visible = false;
@@ -102,17 +102,17 @@ export class UserFormComponent implements OnInit {
 
   save(){
     let user = new NovoUsuarioModel();
-    user.Nome = this.nome?.value;
-    user.CPF = this.CPF?.value;
-    user.Telefone = this.telefone?.value;
-    user.Logradouro = this.endereco?.value;
-    user.Numero = this.numero?.value;
-    user.Complemento = this.complemento?.value;
-    user.Bairro = this.bairro?.value;
-    user.Cidade = this.cidade?.value;
-    user.Estado = this.uf?.value;
-    user.Senha = this.senha?.value;
-    user.ConfirmarSenha = this.confirmarSenha?.value;
+    user.nome = this.nome?.value;
+    user.cpf = this.CPF?.value;
+    user.telefone = this.telefone?.value;
+    user.logradouro = this.endereco?.value;
+    user.numero = this.numero?.value;
+    user.complemento = this.complemento?.value;
+    user.bairro = this.bairro?.value;
+    user.cidade = this.cidade?.value;
+    user.estado = this.uf?.value;
+    user.senha = this.senha?.value;
+    user.confirmarSenha = this.confirmarSenha?.value;
 
     this.userService.create(user).subscribe({
       next: (response) => {
@@ -139,22 +139,11 @@ export class UserFormComponent implements OnInit {
   private load(userId: number) {
     this.userService.getById(userId).subscribe({
       next: (response) => {
-        this.success = response['sucesso'];
-        this.message = response['mensagem'];
-
-        if(this.success == true){
-          this.showSuccess(this.message);
-          this.user = response['dados'];
-        }
-        else{
-          this.showError(this.message);
-        }
+        this.user = response;
+        this.startForm(this.user);
       },
       error: (response) => {
-        this.success = response.error['success'];
-        this.message = response.error['mensagem'];
-        this.erros = response.error['dados'];
-        this.showError(this.message,'Erro');
+        console.log(response);
       }
     })
   }
@@ -170,32 +159,32 @@ export class UserFormComponent implements OnInit {
   private startForm(user: NovoUsuarioModel){
     this.userForm = new FormGroup({
       id: new FormControl(null),
-      nome: new FormControl(user.Nome, [
+      nome: new FormControl(user.nome, [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(150)
       ]),
-      cpf: new FormControl(user.CPF, [
+      cpf: new FormControl(user.cpf, [
         Validators.required,
         Validators.minLength(11),
         Validators.maxLength(11)
       ]),
-      telefone: new FormControl(user.Telefone),
-      endereco: new FormControl(user.Logradouro),
-      numero: new FormControl(user.Numero),
-      complemento: new FormControl(user.Complemento),
-      bairro: new FormControl(user.Bairro),
-      cidade: new FormControl(user.Cidade),
-      estado: new FormControl(user.Estado, [
+      telefone: new FormControl(user.telefone),
+      endereco: new FormControl(user.logradouro),
+      numero: new FormControl(user.numero),
+      complemento: new FormControl(user.complemento),
+      bairro: new FormControl(user.bairro),
+      cidade: new FormControl(user.cidade),
+      estado: new FormControl(user.estado, [
         Validators.minLength(2),
         Validators.maxLength(2)
       ]),
-      senha: new FormControl(user.Senha, [
+      senha: new FormControl(user.senha, [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12)
       ]),
-      confirmarSenha: new FormControl(user.ConfirmarSenha, [
+      confirmarSenha: new FormControl(user.confirmarSenha, [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12)

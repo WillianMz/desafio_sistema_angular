@@ -23,6 +23,7 @@
                 <th>CPF</th>
                 <th>Endereço</th>
                 <th>Telefone</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -32,6 +33,11 @@
                 <td>{{u.cpf}}</td>
                 <td>{{u.cidade || "Indisponível"}} {{u.estado}}</td>
                 <td>{{u.telefone}}</td>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-primary" routerLink="/usuarios/{{u.id}}/edit">Editar</button>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>

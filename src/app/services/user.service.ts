@@ -39,8 +39,8 @@ export class UserService {
     return this.http.get<UsuarioModel[]>(this.url);
   }
 
-  public getById(id: number): Observable<UsuarioModel> {
-    return this.http.get<UsuarioModel>(`${this.url}/${id}`);
+  public getById(id: number): Observable<NovoUsuarioModel> {
+    return this.http.get<NovoUsuarioModel>(`${this.url}/${id}`);
   }
 
 }

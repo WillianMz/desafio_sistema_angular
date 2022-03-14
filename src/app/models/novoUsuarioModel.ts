@@ -1,14 +1,14 @@
 
 export class NovoUsuarioModel {
-    public Nome: string;
-    public CPF: string;
-    public Telefone: string;
-    public Senha: string;
-    public ConfirmarSenha: string;
-    public Logradouro?: string;
-    public Numero?: number;
-    public Complemento?: string;
-    public Bairro?: string;
-    public Cidade?: string;
-    public Estado?: string;
+    public nome: string;
+    public cpf: string;
+    public telefone: string;
+    public senha: string;
+    public confirmarSenha: string;
+    public logradouro?: string;
+    public numero?: number;
+    public complemento?: string;
+    public bairro?: string;
+    public cidade?: string;
+    public estado?: string;
 }
